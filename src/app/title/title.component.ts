@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class TitleComponent {
   @Input({ required: true }) title: string = '';
+  @Input({ required: true }) description: string = '';
 }
