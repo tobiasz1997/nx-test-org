@@ -1,0 +1,73 @@
+{
+  "name": "zara",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "org",
+  "sourceRoot": "apps/zara/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/zara",
+        "index": "apps/zara/src/index.html",
+        "browser": "apps/zara/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/zara/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/zara/src/favicon.ico", "apps/zara/src/assets"],
+        "styles": ["apps/zara/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "zara:build:production"
+        },
+        "development": {
+          "buildTarget": "zara:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "zara:build"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "zara:build",
+        "staticFilePath": "dist/apps/zara/browser"
+      }
+    }
+  }
+}
