@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "zara:start": "npx nx serve zara"
+    "zara:start": "npx nx serve zara",
+    "lacoste:start": "npx nx serve lacoste"
   },
   "private": true,
   "dependencies": {
